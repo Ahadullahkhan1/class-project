@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ShoppingBag } from "lucide-react";
 import { productsData } from "../assets";
 
-
 const Cart = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cartItems, setCartItems] = useState(productsData.map(product => ({ ...product, quantity: 1 })));
@@ -24,7 +23,12 @@ const Cart = () => {
       </button>
 
       {/* Drawer */}
-      <div className={`fixed top-0 right-0 w-80 z-50 h-full bg-white shadow-lg transform ${isOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-300`}>
+      <div 
+        className={`fixed top-0 right-0 md:w-80 w-full h-full z-50 bg-white shadow-lg transform ${
+          isOpen ? "translate-x-0" : "translate-x-full md:translate-x-full translate-y-full"
+        } transition-transform duration-300 md:bottom-auto bottom-0`}
+      >
+        {/* Header */}
         <div className="p-4 border-b flex justify-between items-center">
           <h2 className="text-lg font-bold">Shopping Cart</h2>
           <button onClick={toggleDrawer} className="text-gray-500 hover:text-black">✖</button>
@@ -51,7 +55,9 @@ const Cart = () => {
         {/* Subtotal & Checkout */}
         <div className="p-4 border-t">
           <p className="font-semibold text-lg">Total: ${subTotal}</p>
-          <button className="w-full bg-blue-500 text-white py-2 rounded-md mt-2 hover:bg-blue-600">Go to shopping cart</button>
+          <button className="w-full bg-blue-500 text-white py-2 rounded-md mt-2 hover:bg-blue-600">
+            Go to shopping cart
+          </button>
         </div>
       </div>
     </div>
